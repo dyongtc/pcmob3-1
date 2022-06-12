@@ -19,10 +19,11 @@ function HomeScreen({ navigation }) {
 
   function renderItem({ item }) {
     return (
-      <TouchableOpacity
+    <TouchableOpacity
+        style={{ aspectRatio: 1, flex: 1/4, borderWidth:1, borderColor: "white" }} 
         onPress={() => navigation.navigate("DetailsScreen", { ...item })}
       >
-        <BlockRGB red={item.red} green={item.green} blue={item.blue} style={{ aspectRatio: 1, flex: 1/4 }}/>
+        <BlockRGB red={item.red} green={item.green} blue={item.blue}/>
       </TouchableOpacity>
     );
   }
@@ -41,14 +42,18 @@ function HomeScreen({ navigation }) {
     setColorArray([]);
   }
   return (
-    <View style={styles.container}>
+    <View>
       <TouchableOpacity
-        style={{ height: 50, justifyContent: "center" }}
-        onPress={resetColor}
+        style={{ height: 50, alignItems: "center", justifyContent: "center" }}
+        onPress={resetColor} 
       >
         <Text style={{ color: "blue" }}>Reset colour</Text>
       </TouchableOpacity>
-      <FlatList data={colorArray} renderItem={renderItem} numColumns={4}/>
+      <FlatList 
+        data={colorArray} 
+        renderItem={renderItem}
+        numColumns={4} 
+      />
     </View>
   );
 }
@@ -57,6 +62,7 @@ function DetailsScreen({route}) {
   const { red, green, blue } = route.params;
 
   return (
+    
     <View
       style={[
         styles.container,
@@ -64,7 +70,7 @@ function DetailsScreen({route}) {
       ]}
     >
       <View style={{ padding: 30 }}>
-        <Text style={styles.detailText}>Red: {red}</Text>
+        <Text style={styles.detailText} >Red: {red}</Text>
         <Text style={styles.detailText}>Green: {green}</Text>
         <Text style={styles.detailText}>Blue: {blue}</Text>
       </View>
@@ -84,6 +90,18 @@ export default function App() {
    </NavigationContainer>
  );
 }
+
+/* function textColor({route}) {
+  const { red, green, blue } = route.params;
+  const compareBgColor = (red*0.299 + green*0.587 + blue*0.114);
+  console.log(compareBgColor);
+  if (compareBgColor > 186) {
+      return 'black';
+  } else {
+      return 'white';
+  }  
+}
+*/
 
 const styles = StyleSheet.create({
  container: {
