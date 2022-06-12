@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, FlatList, Button, TouchableOpacity, Dimensions} from "react-native";
+import { StyleSheet, Text, View, FlatList, Button, TouchableOpacity, Image, Dimensions} from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import BlockRGB from "./components/BlockRGB";
@@ -22,7 +22,7 @@ function HomeScreen({ navigation }) {
       <TouchableOpacity
         onPress={() => navigation.navigate("DetailsScreen", { ...item })}
       >
-        <BlockRGB red={item.red} green={item.green} blue={item.blue} />
+        <BlockRGB red={item.red} green={item.green} blue={item.blue} style={{ aspectRatio: 1, flex: 1/4 }}/>
       </TouchableOpacity>
     );
   }
